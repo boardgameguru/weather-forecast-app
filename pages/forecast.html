@@ -1,1 +1,17 @@
-<h1> Forecast for {{city}}</h1>
+<h1> Current Forecast for {{city}}</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title"> {{ currentWeather.dt }} </h1>
+            </div>
+            <div class="panel-body">
+                <h2> Current temperature: {{ currentWeather.main.temp }}</h2>
+                <h4> Daytime Low: {{ currentWeather.main.temp_min }}</h4>
+                <h4> Daytime High: {{ currentWeather.main.temp_max }}</h4>
+                <h6> Humidity: {{ currentWeather.main.humidity }}%</h6>
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,21 +20,26 @@ weatherApp.config(function($routeProvider) {
 //Services
 
 weatherApp.service('cityService', function() {
-   
-    this.city = "Toronto, ON";
-    
+
+    this.city = "Toronto,CA";
+
 });
 
 //Controllers
 
 weatherApp.controller('homeController', ['$scope', 'cityService', function($scope, cityService) {
     $scope.city = cityService.city;
-    
+
     $scope.$watch('city', function() {
         cityService.city = $scope.city
     });
 }]);
 
-weatherApp.controller('forecastController', ['$scope', 'cityService', function($scope, cityService) {
-    $scope.city = cityService.city;
+weatherApp.controller('forecastController', ['$scope', '$resource', 'cityService', function($scope, $resource ,cityService) {
+    $scope.city = cityService.city
+
+    var currentWeatherAPI = $resource('http://api.openweathermap.org/data/2.5/weather?q=:city&appid=:appid', { city: $scope.city, appid: config.weatherAPIKey });
+
+    $scope.currentWeather = currentWeatherAPI.get();
+
 }]);
