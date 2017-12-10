@@ -42,4 +42,12 @@ weatherApp.controller('forecastController', ['$scope', '$resource', 'cityService
 
     $scope.currentWeather = currentWeatherAPI.get();
 
+    $scope.convertToCelcius = function(kelvin) {
+        return Math.round(kelvin -273.15)
+    };
+
+    $scope.convertToDate = function(date) {
+        return new Date(date)
+    }
+
 }]);
