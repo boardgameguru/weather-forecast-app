@@ -30,6 +30,22 @@ weatherApp.service('cityService', function() {
 
 });
 
+//Custom Directive
+
+weatherApp.directive('weatherReport', function() {
+    return {
+        templateUrl: 'directive/weatherReport.html',
+        replace: true,
+        restrict: 'E',
+        scope: {
+            currentWeather: "=",
+            convertToStandardTemp: "&",
+            convertToStandardDate: "&",
+            dateFormat: "@"
+        }
+    }
+});
+
 //Controllers
 
 weatherApp.controller('homeController', ['$scope', 'cityService', function($scope, cityService) {

@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"> {{ convertToStandardDate({ date: currentWeather.dt * 1000}) | date: dateFormat }} </h1>
+    </div>
+    <div class="panel-body">
+        <h2> Temperature: {{ convertToStandardTemp({ temp: currentWeather.main.temp}) }}°C</h2>
+        <h4> Forecasted High: {{ convertToStandardTemp({ temp: currentWeather.main.temp_max}) }}°C</h4>
+        <h4> Forecasted Low: {{ convertToStandardTemp({ temp: currentWeather.main.temp_min}) }}°C</h4>
+        <h6> Humidity: {{ currentWeather.main.humidity }}%</h6>
+    </div>
+</div>
