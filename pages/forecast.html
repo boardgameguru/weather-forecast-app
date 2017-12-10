@@ -1,16 +1,25 @@
 <h1> Current Forecast for {{city}}</h1>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h1 class="panel-title"> {{ convertToDate(currentWeather.dt * 1000) | date: 'MMMM d, yyyy' }} </h1>
-            </div>
-            <div class="panel-body">
-                <h2> Current temperature: {{ convertToCelcius(currentWeather.main.temp) }}°C</h2>
-                <h4> Daytime High: {{ convertToCelcius(currentWeather.main.temp_max) }}°C</h4>
-                <h4> Daytime Low: {{ convertToCelcius(currentWeather.main.temp_min) }}°C</h4>
-                <h6> Humidity: {{ currentWeather.main.humidity }}%</h6>
+<hr />
+<h2>Forecast Options:
+    <a href="#/forecast" ng-class="{ 'label-info': days === '1' }">Current</a> |
+    <a href="#forecast/9" ng-class="{ 'label-info': days === '9' }">24 hours</a> |
+    <a href="#forecast/17" ng-class="{ 'label-info': days === '17' }">48 hours</a> |
+    <a href="#forecast/25" ng-class="{ 'label-info': days === '25' }">72 hours</a>
+</h2>
+<hr />
+<div ng-repeat="day in currentWeather.list">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title"> {{ convertToDate(day.dt * 1000) | date: "MMMM d, yyyy 'at' h':'mma" }} </h1>
+                </div>
+                <div class="panel-body">
+                    <h2> Temperature: {{ convertToCelcius(day.main.temp) }}°C</h2>
+                    <h4> Forecasted High: {{ convertToCelcius(day.main.temp_max) }}°C</h4>
+                    <h4> Forecasted Low: {{ convertToCelcius(day.main.temp_min) }}°C</h4>
+                    <h6> Humidity: {{ day.main.humidity }}%</h6>
+                </div>
             </div>
         </div>
     </div>
